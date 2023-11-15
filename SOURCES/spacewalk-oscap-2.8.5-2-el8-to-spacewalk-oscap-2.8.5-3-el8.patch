@@ -1,0 +1,29 @@
+diff --git a/spacewalk-oscap.spec b/spacewalk-oscap.spec
+index e2fda374ae..ddcac62824 100644
+--- a/spacewalk-oscap.spec
++++ b/spacewalk-oscap.spec
+@@ -1,4 +1,4 @@
+-%if 0%{?fedora} || 0%{?suse_version} > 1320
++%if 0%{?fedora} || 0%{?suse_version} > 1320 || 0%{?rhel} >= 8
+ %global build_py3   1
+ %global default_py3 1
+ %endif
+@@ -11,7 +11,7 @@
+ 
+ Name:		spacewalk-oscap
+ Version:	2.8.5
+-Release:	2%{?dist}
++Release:	3%{?dist}
+ Summary:	OpenSCAP plug-in for rhn-check
+ 
+ License:	GPLv2
+@@ -113,6 +113,9 @@ make -f Makefile.spacewalk-oscap install PREFIX=$RPM_BUILD_ROOT PYTHONPATH=%{pyt
+ %endif
+ 
+ %changelog
++* Wed Mar 21 2018 Tomas Kasparek <tkasparek@redhat.com> 2.8.5-3
++- build python3 variant of the package (tkasparek@redhat.com)
++
+ * Tue Mar 20 2018 Tomas Kasparek <tkasparek@redhat.com> 2.8.5-2
+ - don't build python2 subpackages on systems with default python3
+   (tkasparek@redhat.com)
