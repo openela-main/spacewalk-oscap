@@ -1,0 +1,32 @@
+diff --git a/spacewalk-oscap.spec b/spacewalk-oscap.spec
+index ddcac62824..d1a3cc87f8 100644
+--- a/spacewalk-oscap.spec
++++ b/spacewalk-oscap.spec
+@@ -11,7 +11,7 @@
+ 
+ Name:		spacewalk-oscap
+ Version:	2.8.5
+-Release:	3%{?dist}
++Release:	4%{?dist}
+ Summary:	OpenSCAP plug-in for rhn-check
+ 
+ License:	GPLv2
+@@ -19,7 +19,7 @@ URL:		https://github.com/spacewalkproject/spacewalk
+ Source0:	https://github.com/spacewalkproject/spacewalk/archive/%{name}-%{version}.tar.gz
+ BuildArch:	noarch
+ BuildRequires:  libxslt
+-%if 0%{?rhel}
++%if 0%{?rhel} && 0%{?rhel} < 8
+ Requires: openscap-utils
+ %else
+ Requires:	openscap-scanner
+@@ -113,6 +113,9 @@ make -f Makefile.spacewalk-oscap install PREFIX=$RPM_BUILD_ROOT PYTHONPATH=%{pyt
+ %endif
+ 
+ %changelog
++* Mon May 14 2018 Tomas Kasparek <tkasparek@redhat.com> 2.8.5-4
++- require openscap-scanner on newer versions of RHEL (tkasparek@redhat.com)
++
+ * Wed Mar 21 2018 Tomas Kasparek <tkasparek@redhat.com> 2.8.5-3
+ - build python3 variant of the package (tkasparek@redhat.com)
+ 
